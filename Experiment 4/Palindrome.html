@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Palindrome Checker</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    background:linear-gradient(135deg,#d3b1b1,#764ba2);
+}
+
+.container{
+    width:420px;
+    background:white;
+    padding:30px;
+    border-radius:15px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.3);
+    text-align:center;
+}
+
+h2{
+    color:#333;
+    margin-bottom:20px;
+}
+
+input{
+    width:100%;
+    padding:12px;
+    margin:15px 0;
+    border:1px solid #ccc;
+    border-radius:8px;
+    font-size:16px;
+}
+
+input:focus{
+    outline:none;
+    border-color:#667eea;
+    box-shadow:0 0 8px rgba(102,126,234,.4);
+}
+
+button{
+    width:100%;
+    padding:12px;
+    border:none;
+    border-radius:8px;
+    background:#667eea;
+    color:white;
+    font-size:17px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+button:hover{
+    background:#4f5bd5;
+}
+
+#result{
+    margin-top:20px;
+    padding:15px;
+    background:#f4f4f4;
+    border-left:5px solid #667eea;
+    border-radius:8px;
+    text-align:left;
+    line-height:1.8;
+}
+</style>
+
+</head>
+<body>
+
+<div class="container">
+
+<h2>🔄 Palindrome Checker</h2>
+
+<input type="text" id="text" placeholder="Enter a word">
+
+<button onclick="checkPalindrome()">
+Check Palindrome
+</button>
+
+<div id="result">
+Enter a word and click the button.
+</div>
+
+</div>
+
+<script>
+
+// Function Declaration
+function checkPalindrome(){
+
+    try{
+
+        let text=document.getElementById("text").value.trim();
+
+        if(text===""){
+            throw "Please enter a word.";
+        }
+
+        // Scope Example
+        let original=text.toLowerCase();
+
+        // Arrow Function
+        const reverseString=str=>str.split("").reverse().join("");
+
+        let reversed=reverseString(original);
+
+        // Function Expression
+        const isPalindrome=function(str1,str2){
+            return str1===str2;
+        };
+
+        // Closure
+        function counter(){
+            let count=0;
+
+            return function(){
+                count++;
+                return count;
+            }
+        }
+
+        const visit=counter();
+        let checks=visit();
+
+        let message=isPalindrome(original,reversed)
+            ? "It is a Palindrome."
+            : "It is NOT a Palindrome.";
+
+        document.getElementById("result").innerHTML=
+        "<b>Original:</b> "+text+"<br>"+
+        "<b>Reversed:</b> "+reversed+"<br>"+
+        "<b>Result:</b> "+message+"<br>"+
+        "<b>Closure Count:</b> "+checks;
+
+    }
+
+    catch(error){
+
+        alert(error);
+
+    }
+
+}
+
+</script>
+
+</body>
+</html>
