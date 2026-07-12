@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Student Grading System</title>
+
+<style>
+    *{
+        margin:0;
+        padding:0;
+        box-sizing:border-box;
+        font-family:Arial, Helvetica, sans-serif;
+    }
+
+    body{
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        height:100vh;
+        background:linear-gradient(135deg,#834ffe,#5b2d40);
+    }
+
+    .container{
+        width:420px;
+        background:#fff;
+        padding:30px;
+        border-radius:15px;
+        box-shadow:0 10px 25px rgba(0,0,0,0.2);
+        text-align:center;
+    }
+
+    h2{
+        color:#333;
+        margin-bottom:20px;
+    }
+
+    input{
+        width:100%;
+        padding:12px;
+        margin:10px 0;
+        border:1px solid #ccc;
+        border-radius:8px;
+        font-size:16px;
+    }
+
+    input:focus{
+        outline:none;
+        border-color:#4facfe;
+        box-shadow:0 0 8px rgba(79,172,254,0.5);
+    }
+
+    button{
+        width:100%;
+        padding:12px;
+        background:#4facfe;
+        color:white;
+        border:none;
+        border-radius:8px;
+        font-size:17px;
+        cursor:pointer;
+        margin-top:10px;
+        transition:0.3s;
+    }
+
+    button:hover{
+        background:#008cff;
+    }
+
+    #result{
+        margin-top:20px;
+        padding:15px;
+        border-radius:8px;
+        background:#f5f9ff;
+        border-left:5px solid #4facfe;
+        text-align:left;
+        line-height:1.8;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>🎓 Student Grading System</h2>
+
+<input type="text" id="name" placeholder="Enter Student Name">
+
+<input type="number" id="marks" placeholder="Enter Marks (0-100)">
+
+<button onclick="calculateGrade()">Calculate Grade</button>
+
+<div id="result">
+Please enter student details.
+</div>
+
+</div>
+
+<script>
+
+function calculateGrade(){
+
+    let name = document.getElementById("name").value.trim();
+    let marks = document.getElementById("marks").value;
+
+    // Form Validation
+    if(name==""){
+        alert("Please enter student name.");
+        return;
+    }
+
+    if(marks==""){
+        alert("Please enter marks.");
+        return;
+    }
+
+    marks = Number(marks);
+
+    if(marks<0 || marks>100){
+        alert("Marks should be between 0 and 100.");
+        return;
+    }
+
+    // Control Structure (if-else)
+    let grade;
+
+    if(marks>=90){
+        grade="A+";
+    }
+    else if(marks>=80){
+        grade="A";
+    }
+    else if(marks>=70){
+        grade="B";
+    }
+    else if(marks>=60){
+        grade="C";
+    }
+    else if(marks>=50){
+        grade="D";
+    }
+    else{
+        grade="F";
+    }
+
+    let status = (marks>=50) ? "Pass ✅" : "Fail ❌";
+
+    document.getElementById("result").innerHTML=
+    "<b>Student Name:</b> "+name+"<br>"+
+    "<b>Marks:</b> "+marks+"<br>"+
+    "<b>Grade:</b> "+grade+"<br>"+
+    "<b>Result:</b> "+status;
+
+}
+
+</script>
+
+</body>
+</html>
