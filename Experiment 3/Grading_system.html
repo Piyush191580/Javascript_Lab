@@ -21,6 +21,16 @@
         background:linear-gradient(135deg,#834ffe,#5b2d40);
     }
 
+    /* Student Details */
+    .student{
+        position:absolute;
+        top:10px;
+        left:10px;
+        font-size:16px;
+        font-weight:bold;
+        color:white;
+    }
+
     .container{
         width:420px;
         background:#fff;
@@ -80,6 +90,12 @@
 </head>
 
 <body>
+
+<!-- Student Details -->
+<div class="student">
+    Name: Piyush Agrawal  <br>
+    PRN: 24070521073
+</div>
 
 <div class="container">
 
@@ -146,11 +162,11 @@ function calculateGrade(){
 
     let status = (marks>=50) ? "Pass ✅" : "Fail ❌";
 
-    document.getElementById("result").innerHTML=
-    "<b>Student Name:</b> "+name+"<br>"+
-    "<b>Marks:</b> "+marks+"<br>"+
-    "<b>Grade:</b> "+grade+"<br>"+
-    "<b>Result:</b> "+status;
+    document.getElementById("result").innerHTML =
+    "<b>Student Name:</b> " + name + "<br>" +
+    "<b>Marks:</b> " + marks + "<br>" +
+    "<b>Grade:</b> " + grade + "<br>" +
+    "<b>Result:</b> " + status;
 
 }
 
