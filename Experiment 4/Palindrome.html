@@ -18,7 +18,17 @@ body{
     justify-content:center;
     align-items:center;
     height:100vh;
-    background:linear-gradient(135deg,#d3b1b1,#764ba2);
+    background:linear-gradient(135deg,#8d5a5a,#764ba2);
+}
+
+/* Student Details */
+.student{
+    position:absolute;
+    top:10px;
+    left:10px;
+    font-size:16px;
+    font-weight:bold;
+    color:white;
 }
 
 .container{
@@ -80,6 +90,12 @@ button:hover{
 </head>
 <body>
 
+<!-- Student Details -->
+<div class="student">
+    Name: Piyush Agrawal <br>
+    PRN: 24070521073
+</div>
+
 <div class="container">
 
 <h2>🔄 Palindrome Checker</h2>
@@ -103,28 +119,28 @@ function checkPalindrome(){
 
     try{
 
-        let text=document.getElementById("text").value.trim();
+        let text = document.getElementById("text").value.trim();
 
-        if(text===""){
+        if(text === ""){
             throw "Please enter a word.";
         }
 
         // Scope Example
-        let original=text.toLowerCase();
+        let original = text.toLowerCase();
 
         // Arrow Function
-        const reverseString=str=>str.split("").reverse().join("");
+        const reverseString = str => str.split("").reverse().join("");
 
-        let reversed=reverseString(original);
+        let reversed = reverseString(original);
 
         // Function Expression
-        const isPalindrome=function(str1,str2){
-            return str1===str2;
+        const isPalindrome = function(str1, str2){
+            return str1 === str2;
         };
 
         // Closure
         function counter(){
-            let count=0;
+            let count = 0;
 
             return function(){
                 count++;
@@ -132,18 +148,18 @@ function checkPalindrome(){
             }
         }
 
-        const visit=counter();
-        let checks=visit();
+        const visit = counter();
+        let checks = visit();
 
-        let message=isPalindrome(original,reversed)
+        let message = isPalindrome(original, reversed)
             ? "It is a Palindrome."
             : "It is NOT a Palindrome.";
 
-        document.getElementById("result").innerHTML=
-        "<b>Original:</b> "+text+"<br>"+
-        "<b>Reversed:</b> "+reversed+"<br>"+
-        "<b>Result:</b> "+message+"<br>"+
-        "<b>Closure Count:</b> "+checks;
+        document.getElementById("result").innerHTML =
+        "<b>Original:</b> " + text + "<br>" +
+        "<b>Reversed:</b> " + reversed + "<br>" +
+        "<b>Result:</b> " + message + "<br>" +
+        "<b>Closure Count:</b> " + checks;
 
     }
 
