@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cart Total Calculator</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+    background:linear-gradient(135deg,#fdfdfd,#eeeef0);
+}
+
+/* Student Details */
+.student{
+    position:absolute;
+    top:10px;
+    left:10px;
+    font-size:16px;
+    font-weight:bold;
+    color:rgb(12, 12, 12);
+}
+
+.container{
+    width:450px;
+    background:#fff;
+    padding:30px;
+    border-radius:15px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.25);
+    text-align:center;
+}
+
+h2{
+    margin-bottom:20px;
+    color:#333;
+}
+
+input{
+    width:100%;
+    padding:12px;
+    margin:10px 0;
+    border:1px solid #ccc;
+    border-radius:8px;
+    font-size:16px;
+}
+
+input:focus{
+    outline:none;
+    border-color:#5b86e5;
+    box-shadow:0 0 8px rgba(91,134,229,0.4);
+}
+
+button{
+    width:100%;
+    padding:12px;
+    margin-top:10px;
+    border:none;
+    border-radius:8px;
+    background:#5b86e5;
+    color:#fff;
+    font-size:17px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+button:hover{
+    background:#3f6fd8;
+}
+
+#result{
+    margin-top:20px;
+    padding:15px;
+    background:#f5f7ff;
+    border-left:5px solid #5b86e5;
+    border-radius:8px;
+    text-align:left;
+    line-height:1.8;
+}
+</style>
+
+</head>
+<body>
+
+<!-- Student Details -->
+<div class="student">
+    Name: Piyush Agrawal <br>
+    PRN: 24070521073
+</div>
+
+<div class="container">
+
+<h2>🛒 Cart Total Calculator</h2>
+
+<input type="text" id="item" placeholder="Item Name">
+
+<input type="number" id="price" placeholder="Item Price">
+
+<button onclick="addItem()">Add Item</button>
+
+<button onclick="calculateTotal()">Calculate Total</button>
+
+<div id="result">
+Add items to the cart.
+</div>
+
+</div>
+
+<script>
+
+// Array to store cart items
+let cart = [];
+
+// Add item to cart
+function addItem(){
+
+    const itemName = document.getElementById("item").value.trim();
+    const itemPrice = Number(document.getElementById("price").value);
+
+    if(itemName === "" || itemPrice <= 0){
+        alert("Enter valid item details.");
+        return;
+    }
+
+    // Object
+    const item = {
+        name: itemName,
+        price: itemPrice
+    };
+
+    // Array Method - push()
+    cart.push(item);
+
+    alert(itemName + " added to cart.");
+
+    document.getElementById("item").value = "";
+    document.getElementById("price").value = "";
+}
+
+// Calculate Cart Total
+function calculateTotal(){
+
+    if(cart.length === 0){
+        alert("Cart is empty.");
+        return;
+    }
+
+    let items = "";
+
+    // Array Method - forEach()
+    cart.forEach((product, index) => {
+        items += (index + 1) + ". " + product.name + " - ₹" + product.price + "<br>";
+    });
+
+    // Array Method - reduce()
+    let total = cart.reduce((sum, product) => sum + product.price, 0);
+
+    let discount = 0;
+
+    // Discount Logic
+    if(total >= 5000){
+        discount = total * 0.20;
+    }
+    else if(total >= 3000){
+        discount = total * 0.10;
+    }
+    else if(total >= 1000){
+        discount = total * 0.05;
+    }
+
+    let finalAmount = total - discount;
+
+    document.getElementById("result").innerHTML =
+    "<b>Items in Cart:</b><br><br>" +
+    items +
+    "<hr>" +
+    "<b>Total:</b> ₹" + total.toFixed(2) + "<br>" +
+    "<b>Discount:</b> ₹" + discount.toFixed(2) + "<br>" +
+    "<b>Final Amount:</b> ₹" + finalAmount.toFixed(2);
+}
+
+</script>
+
+</body>
+</html>
