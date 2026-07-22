@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dynamic JSON Table Render</title>
+    <!-- Include jQuery via CDN for the jQuery example -->
+    <script src="https://jquery.com"></script>
+    <style>
+        table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+    </style>
+</head>
+<body>
+
+    <h2>Data Loaded via Native fetch()</h2>
+    <table id="fetch-table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tbody id="fetch-tbody"><!-- Data will inject here --></tbody>
+    </table>
+
+    <h2>Data Loaded via jQuery $.getJSON()</h2>
+    <table id="jquery-table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tbody id="jquery-tbody"><!-- Data will inject here --></tbody>
+    </table>
+
+    <script src="Practical_10.js"></script>
+</body>
+</html>
